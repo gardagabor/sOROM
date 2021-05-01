@@ -1,12 +1,15 @@
 package hu.bme.aut.android.srm
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import hu.bme.aut.android.srm.databinding.RecipeDetailBinding
+import hu.bme.aut.android.srm.databinding.TemperatureBinding
 import hu.bme.aut.android.srm.model.*
 
 class RecipeDetailFragment : Fragment() {
@@ -58,6 +61,10 @@ class RecipeDetailFragment : Fragment() {
         binding.tvVolumeUnit.text = selectedRecipe?.volume?.unit
         binding.tvBoilVolumeValue.text = selectedRecipe?.boilVolume?.value.toString()
         binding.tvBoilVolumeUnit.text = selectedRecipe?.boilVolume?.unit
+
+        val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature, null)
+
+        binding.ParentLayout.addView(inflater,binding.ParentLayout.childCount)
 
     }
 }

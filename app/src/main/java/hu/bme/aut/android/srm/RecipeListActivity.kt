@@ -35,7 +35,6 @@ class RecipeListActivity : AppCompatActivity(),
 
     override fun onItemClick(beerRecipe: BeerRecipe) {
         val intent = Intent(this, RecipeDetailActivity::class.java)
-        // intent.putExtra(RecipeDetailActivity.KEY_DESC, beerRecipe.description)
         intent.putExtra("BeerRecipe", beerRecipe);
         startActivity(intent)
     }
