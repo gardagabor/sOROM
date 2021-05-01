@@ -17,6 +17,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Volume"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelEbc" />
 
@@ -49,6 +50,7 @@
             android:text="Id"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +64,7 @@
             android:text="Name"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelId" />
 
@@ -74,6 +77,7 @@
             android:text="Tagline"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
@@ -86,6 +90,7 @@
             android:text="Date"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelTagline" />
 
@@ -98,6 +103,7 @@
             android:text="Abv"
             android:textAlignment="center"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelDescription" />
 
@@ -109,6 +115,7 @@
             android:layout_marginTop="12dp"
             android:text="Ibu"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelAbv" />
 
@@ -120,6 +127,7 @@
             android:layout_marginTop="16dp"
             android:text="Description"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelDate" />
 
@@ -131,6 +139,7 @@
             android:layout_marginTop="16dp"
             android:text="TargetFg"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelIbu" />
 
@@ -142,6 +151,7 @@
             android:layout_marginTop="16dp"
             android:text="TargetOg"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelFg" />
 
@@ -153,6 +163,7 @@
             android:layout_marginTop="16dp"
             android:text="Ebc"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelOg" />
 
@@ -265,12 +276,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTargetOg" />
 
         <TextView
-            android:id="@+id/tvBoilVolume"
+            android:id="@+id/labelBoilVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="BoilVolume"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/labelVolume" />
 
@@ -295,25 +307,80 @@
 
 
         <LinearLayout
-            android:id="@+id/ParentLayout"
+            android:id="@+id/MashTempLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvBoilVolume"
+            app:layout_constraintTop_toBottomOf="@+id/labelMashSteps"
             tools:ignore="MissingConstraints">
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/afterTemps"
+            android:id="@+id/labelMashSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="afterTemps"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Temperature steps:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ParentLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/labelBoilVolume" />
+
+        <TextView
+            android:id="@+id/labelFerment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Fermentation:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+
+        <TextView
+            android:id="@+id/tvFermentValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="FermentValue"
+            app:layout_constraintStart_toEndOf="@+id/labelFerment"
+            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+
+        <TextView
+            android:id="@+id/tvFermentUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="FermentUnit"
+            app:layout_constraintStart_toEndOf="@+id/tvFermentValue"
+            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+
+        <TextView
+            android:id="@+id/labelIngredients"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Ingredients:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelFerment" />
+
+        <LinearLayout
+            android:id="@+id/IngredientsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelIngredients">
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

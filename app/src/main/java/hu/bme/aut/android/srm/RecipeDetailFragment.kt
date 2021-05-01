@@ -1,18 +1,14 @@
 package hu.bme.aut.android.srm
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import hu.bme.aut.android.srm.databinding.RecipeDetailBinding
-import hu.bme.aut.android.srm.databinding.TemperatureBinding
 import hu.bme.aut.android.srm.model.*
-import kotlinx.android.synthetic.main.temperature.view.*
-import kotlinx.android.synthetic.main.temperature.*
+import kotlinx.android.synthetic.main.ingredient_row.view.*
+import kotlinx.android.synthetic.main.temperature_step.view.*
 
 
 class RecipeDetailFragment : Fragment() {
@@ -69,13 +65,33 @@ class RecipeDetailFragment : Fragment() {
             addTempStepToView(temp)
         }
 
+        binding.tvFermentValue.text = selectedRecipe?.fermentation?.value.toString()
+        binding.tvFermentUnit.text = selectedRecipe?.fermentation?.unit
+
+        for(ing : Ingredient  in selectedRecipe?.ingredients!!){
+            addTempStepToView(ing)
+        }
+
     }
 
-    fun addTempStepToView(temp : TempStep){
-        val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature, null,false)
+    private fun addTempStepToView(temp : TempStep){
+        val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature_step, null,false)
 
-        inflater.tvTemp.text = temp.duration.toString()
+        inflater.tvTempValue.text = temp.value.toString()
+        inflater.tvTempUnit.text = temp.unit
+        inflater.tvTempDuration.text = temp.duration.toString()
 
-        binding.ParentLayout.addView(inflater,binding.ParentLayout.childCount)
+        binding.MashTempLayout.addView(inflater,binding.MashTempLayout.childCount)
     }
+
+    private fun addTempStepToView(ing : Ingredient){
+        val inflater = LayoutInflater.from(this.context).inflate(R.layout.ingredient_row, null,false)
+
+        inflater.tvIngredientName.text = ing.name
+        inflater.tvIngredientValue.text = ing.value.toString()
+        inflater.tvIngredientUnit.text = ing.unit
+
+        binding.IngredientsLayout.addView(inflater,binding.IngredientsLayout.childCount)
+    }
+
 }

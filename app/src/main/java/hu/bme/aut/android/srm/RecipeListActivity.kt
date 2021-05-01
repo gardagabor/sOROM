@@ -57,15 +57,15 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
+                mutableListOf(
                     TempStep(65,"Celsius",60)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
                     Hop("fugglet",50.0,"gm","10min")
-                },
+                ),
                 "Safale us-5"
             ),
             BeerRecipe(2,
@@ -80,16 +80,16 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(2) {
-                    TempStep(65,"Celsius",30);
+                mutableListOf(
+                    TempStep(65,"Celsius",20),
                     TempStep(70,"Celsius",30)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
                     Hop("fugglet",50.0,"gm","10min")
-                },
+                ),
                 "Safale us-5"
             ),
             BeerRecipe(3,
@@ -104,15 +104,15 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
+                mutableListOf(
                     TempStep(65,"Celsius",60)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
                     Hop("fugglet",50.0,"gm","10min")
-                },
+                ),
                 "Safale us-5"
             ),
             BeerRecipe(4,
@@ -127,15 +127,15 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
+                mutableListOf(
                     TempStep(65,"Celsius",60)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
                     Hop("fugglet",50.0,"gm","10min")
-                },
+                ),
                 "Safale us-5"
             ),BeerRecipe(5,
                 "I wanna be ",
@@ -149,15 +149,15 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
+                mutableListOf(
                     TempStep(65,"Celsius",60)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
-                    Hop("fugglet",50.0,"gm","10min")
-                },
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
+                    Hop("fugglet",50.0,"gm","10min"),
+                ),
                 "Safale us-5"
             ),
             BeerRecipe(6,
@@ -172,15 +172,15 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
+                mutableListOf(
                     TempStep(65,"Celsius",60)
-                },
+                ),
 
                 FermentTemp(20,"Celsius"),
-                MutableList(2) {
-                    Malt("Oris matter",5.0,"kg");
+                mutableListOf(
+                    Malt("Oris matter",5.0,"kg"),
                     Hop("fugglet",50.0,"gm","10min")
-                },
+                ),
                 "Safale us-5"
             )
         )
