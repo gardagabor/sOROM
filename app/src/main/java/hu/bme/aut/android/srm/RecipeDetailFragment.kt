@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import hu.bme.aut.android.srm.databinding.RecipeDetailBinding
 import hu.bme.aut.android.srm.databinding.TemperatureBinding
 import hu.bme.aut.android.srm.model.*
+import kotlinx.android.synthetic.main.temperature.view.*
+import kotlinx.android.synthetic.main.temperature.*
+
 
 class RecipeDetailFragment : Fragment() {
     private var selectedRecipe: BeerRecipe? = null
@@ -62,9 +65,17 @@ class RecipeDetailFragment : Fragment() {
         binding.tvBoilVolumeValue.text = selectedRecipe?.boilVolume?.value.toString()
         binding.tvBoilVolumeUnit.text = selectedRecipe?.boilVolume?.unit
 
-        val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature, null)
+        for(temp : TempStep  in selectedRecipe?.mashTemps!!){
+            addTempStepToView(temp)
+        }
+
+    }
+
+    fun addTempStepToView(temp : TempStep){
+        val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature, null,false)
+
+        inflater.tvTemp.text = temp.duration.toString()
 
         binding.ParentLayout.addView(inflater,binding.ParentLayout.childCount)
-
     }
 }

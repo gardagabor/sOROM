@@ -80,8 +80,9 @@ class RecipeListActivity : AppCompatActivity(),
                 80,
                 WaterVolume(20,"litre"),
                 WaterVolume(25,"litre"),
-                MutableList(1) {
-                    TempStep(65,"Celsius",60)
+                MutableList(2) {
+                    TempStep(65,"Celsius",30);
+                    TempStep(70,"Celsius",30)
                 },
 
                 FermentTemp(20,"Celsius"),
