@@ -6,14 +6,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.forEach
 import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
 import hu.bme.aut.android.srm.databinding.FragmentCreateBinding
-import hu.bme.aut.android.srm.model.BeerRecipe
+import hu.bme.aut.android.srm.model.*
 import kotlinx.android.synthetic.main.fragment_create.view.*
 import kotlinx.android.synthetic.main.ingredient_row_deletable.view.*
 import kotlinx.android.synthetic.main.temperature_step.view.*
 import kotlinx.android.synthetic.main.temperature_step_deletable.view.*
+import kotlin.random.Random
 
 class RecipeCreateFragment : DialogFragment() {
     private lateinit var listener: RecipeCreatedListener
@@ -46,6 +48,80 @@ class RecipeCreateFragment : DialogFragment() {
 
         setAddTemperature()
 
+        setAddIngredient()
+
+        binding.btnCreateRecipe.setOnClickListener{
+
+            var steps: MutableList<TempStep> = mutableListOf()
+            binding.MashTemps.forEach {
+                steps.add(
+                        TempStep(
+                                it.tvTempValueDeletable.text.toString().toInt(),
+                                it.tvTempUnitDeletable.text.toString(),
+                                it.tvTempDurationDeletable.text.toString().toInt()
+                        )
+                )
+
+            }
+
+            var ingredients: MutableList<Ingredient> = mutableListOf()
+            binding.Ingredients.forEach {
+                ingredients.add(
+                        Ingredient(
+                                it.tvIngredientNameDeletable.text.toString(),
+                                it.tvIngredientUnitDeletable.text.toString(),
+                                it.tvIngredientValueDeletable.text.toString().toInt()
+                        )
+                )
+
+            }
+
+
+            listener.onRecipeCreated(
+                    BeerRecipe(100,
+                            binding.etCreateName.text.toString(),
+                            binding.etCreateTagline.text.toString(),
+                            binding.etCreateDate.text.toString(),
+                            binding.etCreateDescription.text.toString(),
+                            binding.etCreateAbv.text.toString().toDouble(),
+                            binding.etCreateIbu.text.toString().toInt(),
+                            binding.etCreateTargetFg.text.toString().toInt(),
+                            binding.etCreateTargetOg.text.toString().toInt(),
+                            binding.etCreateEbc.text.toString().toInt(),
+                            WaterVolume(binding.etCreateVolume.text.toString().toInt(),"liter"),
+                            WaterVolume(binding.etCreateBoilVolume.text.toString().toInt(),"litre"),
+                            steps,
+                            FermentTemp(binding.etCreateFermentation.text.toString().toInt(),"Celsius"),
+                            ingredients,
+                            binding.etCreateYeast.text.toString()
+                    )
+            )
+            dismiss()
+        }
+
+        binding.btnCancel.setOnClickListener {
+            dismiss()
+        }
+
+
+    }
+
+    private fun setAddIngredient() {
+        binding.btnAddIngredient.setOnClickListener {
+            val inflater = LayoutInflater.from(this.context).inflate(R.layout.ingredient_row_deletable, null, false)
+
+            inflater.tvIngredientNameDeletable.text = binding.etIngredientName.text
+            inflater.tvIngredientValueDeletable.text = binding.etIngredientValue.text
+            inflater.tvIngredientUnitDeletable.text = binding.etIngredientUnit.text
+
+            inflater.btnDeleteIngredient.setOnClickListener {
+                binding.Ingredients.removeView(it.parent as View)
+            }
+
+            if(binding.etIngredientName.text.isNotEmpty() && binding.etIngredientValue.text.isNotEmpty() && binding.etIngredientUnit.text.isNotEmpty()) {
+                binding.Ingredients.addView(inflater, binding.Ingredients.childCount)
+            }
+        }
     }
 
     private fun setAddTemperature(){

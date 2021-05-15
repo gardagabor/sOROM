@@ -33,8 +33,8 @@
 
         <Button
             android:id="@+id/btnAddMashStep"
-            android:layout_width="188dp"
-            android:layout_height="47dp"
+            android:layout_width="147dp"
+            android:layout_height="45dp"
             android:layout_marginStart="25dp"
             android:text="Add new temp"
             android:textSize="10sp"
@@ -45,7 +45,7 @@
             android:id="@+id/etTempUnit"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="44dp"
             android:ems="10"
             android:hint="Unit"
             android:inputType="textPersonName"
@@ -56,7 +56,7 @@
             android:id="@+id/etTempDuration"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="32dp"
             android:ems="10"
             android:hint="Time"
             android:inputType="textPersonName"
@@ -327,8 +327,9 @@
             android:id="@+id/labelCreateFermantation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="16dp"
             android:text="Fermantation:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/MashTemps" />
 
@@ -336,7 +337,7 @@
             android:id="@+id/etCreateFermentation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="12dp"
             android:ems="10"
             android:hint="Fermentation"
             android:inputType="textPersonName"
@@ -349,23 +350,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="Ingredients:"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/labelCreateFermantation" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="202dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="25dp"
+            android:id="@+id/btnAddIngredient"
+            android:layout_width="176dp"
+            android:layout_height="48dp"
             android:text="Add new ingredient"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toTopOf="@+id/labelCreateIngredients" />
 
         <EditText
-            android:id="@+id/etingredientName"
-            android:layout_width="100"
+            android:id="@+id/etIngredientName"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:ems="10"
             android:hint="Name"
@@ -374,14 +376,78 @@
             app:layout_constraintTop_toBottomOf="@+id/labelCreateIngredients" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName14"
+            android:id="@+id/etIngredientValue"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ems="10"
+            android:hint="Value"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toEndOf="@+id/etIngredientName"
+            app:layout_constraintTop_toTopOf="@+id/etIngredientName" />
+
+        <EditText
+            android:id="@+id/etIngredientUnit"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:ems="10"
+            android:hint="Unit"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toEndOf="@+id/etIngredientValue"
+            app:layout_constraintTop_toTopOf="@+id/etIngredientValue" />
+
+        <LinearLayout
+            android:id="@+id/Ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etIngredientValue">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/labelCreateYeast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Yeast:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
+
+        <EditText
+            android:id="@+id/etCreateYeast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
+            android:hint="Yeast"
             android:inputType="textPersonName"
-            android:text="Name"
-            app:layout_constraintStart_toEndOf="@+id/etingredientName"
-            tools:layout_editor_absoluteY="900dp" />
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
+            app:layout_constraintTop_toBottomOf="@+id/Ingredients" />
+
+        <Button
+            android:id="@+id/btnCreateRecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="52dp"
+            android:text="CREATE RECIPE"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/labelCreateYeast" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:text="CANCEL"
+            app:layout_constraintStart_toEndOf="@+id/btnCreateRecipe"
+            app:layout_constraintTop_toTopOf="@+id/btnCreateRecipe" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

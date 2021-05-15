@@ -62,21 +62,21 @@ class RecipeDetailFragment : Fragment() {
         binding.tvBoilVolumeUnit.text = selectedRecipe?.boilVolume?.unit
 
         for(temp : TempStep  in selectedRecipe?.mashTemps!!){
-            addTempStepToView(temp)
+            addIngredientToView(temp)
         }
 
         binding.tvFermentValue.text = selectedRecipe?.fermentation?.value.toString()
         binding.tvFermentUnit.text = selectedRecipe?.fermentation?.unit
 
         for(ing : Ingredient  in selectedRecipe?.ingredients!!){
-            addTempStepToView(ing)
+            addIngredientToView(ing)
         }
 
         binding.tvYeast.text = selectedRecipe?.yeast;
 
     }
 
-    private fun addTempStepToView(temp : TempStep){
+    private fun addIngredientToView(temp : TempStep){
         val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature_step, null,false)
 
         inflater.tvTempValue.text = temp.value.toString()
@@ -86,7 +86,7 @@ class RecipeDetailFragment : Fragment() {
         binding.DetailMashTempLayout.addView(inflater,binding.DetailMashTempLayout.childCount)
     }
 
-    private fun addTempStepToView(ing : Ingredient){
+    private fun addIngredientToView(ing : Ingredient){
         val inflater = LayoutInflater.from(this.context).inflate(R.layout.ingredient_row, null,false)
 
         inflater.tvIngredientName.text = ing.name

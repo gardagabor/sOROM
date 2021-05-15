@@ -8,7 +8,7 @@
 
 
     <Button xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/btDeleteIngredient"
+        android:id="@+id/btnDeleteIngredient"
         android:layout_width="86dp"
         android:layout_height="28dp"
         android:layout_marginStart="44dp"
