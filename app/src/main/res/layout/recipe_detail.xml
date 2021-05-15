@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/labelVolume"
+            android:id="@+id/labelDetailVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -19,7 +19,7 @@
             android:text="Volume"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelEbc" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailEbc" />
 
         <TextView
             android:id="@+id/tvVolumeUnit"
@@ -41,7 +41,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvEbc" />
 
         <TextView
-            android:id="@+id/labelId"
+            android:id="@+id/labelDetailId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/labelName"
+            android:id="@+id/labelDetailName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -66,10 +66,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelId" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailId" />
 
         <TextView
-            android:id="@+id/labelTagline"
+            android:id="@+id/labelDetailTagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -79,10 +79,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelName" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailName" />
 
         <TextView
-            android:id="@+id/labelDate"
+            android:id="@+id/labelDetailDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -92,10 +92,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelTagline" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailTagline" />
 
         <TextView
-            android:id="@+id/labelAbv"
+            android:id="@+id/labelDetailAbv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -105,10 +105,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailDescription" />
 
         <TextView
-            android:id="@+id/labelIbu"
+            android:id="@+id/labelDetailbu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -117,10 +117,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelAbv" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailAbv" />
 
         <TextView
-            android:id="@+id/labelDescription"
+            android:id="@+id/labelDetailDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -129,10 +129,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelDate" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailDate" />
 
         <TextView
-            android:id="@+id/labelFg"
+            android:id="@+id/labelDetailFg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -141,10 +141,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelIbu" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailbu" />
 
         <TextView
-            android:id="@+id/labelOg"
+            android:id="@+id/labelDetailOg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -153,10 +153,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelFg" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailFg" />
 
         <TextView
-            android:id="@+id/labelEbc"
+            android:id="@+id/labelDetailEbc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -165,7 +165,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelOg" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailOg" />
 
         <TextView
             android:id="@+id/tvId"
@@ -276,7 +276,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTargetOg" />
 
         <TextView
-            android:id="@+id/labelBoilVolume"
+            android:id="@+id/labelDetailBoilVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -284,7 +284,7 @@
             android:text="BoilVolume"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelVolume" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailVolume" />
 
         <TextView
             android:id="@+id/tvBoilVolumeValue"
@@ -307,19 +307,19 @@
 
 
         <LinearLayout
-            android:id="@+id/MashTempLayout"
+            android:id="@+id/DetailMashTempLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelMashSteps"
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailMashSteps"
             tools:ignore="MissingConstraints">
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/labelMashSteps"
+            android:id="@+id/labelDetailMashSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -327,10 +327,10 @@
             android:text="Temperature steps:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelBoilVolume" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailBoilVolume" />
 
         <TextView
-            android:id="@+id/labelFerment"
+            android:id="@+id/labelDetailFerment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -338,7 +338,7 @@
             android:text="Fermentation:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/DetailMashTempLayout" />
 
         <TextView
             android:id="@+id/tvFermentValue"
@@ -347,8 +347,8 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="16dp"
             android:text="FermentValue"
-            app:layout_constraintStart_toEndOf="@+id/labelFerment"
-            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+            app:layout_constraintStart_toEndOf="@+id/labelDetailFerment"
+            app:layout_constraintTop_toBottomOf="@+id/DetailMashTempLayout" />
 
         <TextView
             android:id="@+id/tvFermentUnit"
@@ -358,10 +358,10 @@
             android:layout_marginTop="16dp"
             android:text="FermentUnit"
             app:layout_constraintStart_toEndOf="@+id/tvFermentValue"
-            app:layout_constraintTop_toBottomOf="@+id/MashTempLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/DetailMashTempLayout" />
 
         <TextView
-            android:id="@+id/labelIngredients"
+            android:id="@+id/labelDetailIngredients"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -369,18 +369,38 @@
             android:text="Ingredients:"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelFerment" />
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailFerment" />
 
         <LinearLayout
-            android:id="@+id/IngredientsLayout"
+            android:id="@+id/DetailIngredientsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelIngredients">
+            app:layout_constraintTop_toBottomOf="@+id/labelDetailIngredients">
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/labelYeast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Yeast:"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DetailIngredientsLayout" />
+
+        <TextView
+            android:id="@+id/tvYeast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Yeast"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/DetailIngredientsLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

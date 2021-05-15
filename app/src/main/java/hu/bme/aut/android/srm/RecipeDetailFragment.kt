@@ -72,6 +72,8 @@ class RecipeDetailFragment : Fragment() {
             addTempStepToView(ing)
         }
 
+        binding.tvYeast.text = selectedRecipe?.yeast;
+
     }
 
     private fun addTempStepToView(temp : TempStep){
@@ -81,7 +83,7 @@ class RecipeDetailFragment : Fragment() {
         inflater.tvTempUnit.text = temp.unit
         inflater.tvTempDuration.text = temp.duration.toString()
 
-        binding.MashTempLayout.addView(inflater,binding.MashTempLayout.childCount)
+        binding.DetailMashTempLayout.addView(inflater,binding.DetailMashTempLayout.childCount)
     }
 
     private fun addTempStepToView(ing : Ingredient){
@@ -91,7 +93,7 @@ class RecipeDetailFragment : Fragment() {
         inflater.tvIngredientValue.text = ing.value.toString()
         inflater.tvIngredientUnit.text = ing.unit
 
-        binding.IngredientsLayout.addView(inflater,binding.IngredientsLayout.childCount)
+        binding.DetailIngredientsLayout.addView(inflater,binding.DetailIngredientsLayout.childCount)
     }
 
 }

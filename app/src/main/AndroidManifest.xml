@@ -16,7 +16,8 @@
         <activity
             android:name=".RecipeListActivity"
             android:label="@string/appName"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SÖRÖM.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

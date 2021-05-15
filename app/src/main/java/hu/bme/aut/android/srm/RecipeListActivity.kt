@@ -3,14 +3,18 @@ package hu.bme.aut.android.srm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.srm.adapter.SimpleItemRecyclerViewAdapter
 import hu.bme.aut.android.srm.databinding.ActivityMainBinding
 import hu.bme.aut.android.srm.model.*
 
 class RecipeListActivity : AppCompatActivity(),
-    SimpleItemRecyclerViewAdapter.BeerRecipeItemClickListener {
+    SimpleItemRecyclerViewAdapter.BeerRecipeItemClickListener,
+RecipeCreateFragment.RecipeCreatedListener{
 
     private lateinit var binding: ActivityMainBinding
 
@@ -20,6 +24,9 @@ class RecipeListActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.title = title
 
         setupRecyclerView()
 
@@ -40,7 +47,33 @@ class RecipeListActivity : AppCompatActivity(),
     }
 
     override fun onItemLongClick(position: Int, view: View): Boolean {
-        TODO("Not yet implemented")
+        val popup = PopupMenu(this, view)
+        popup.inflate(R.menu.menu_recipe)
+        popup.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.delete -> simpleItemRecyclerViewAdapter.deleteRow(position)
+            }
+            false
+        }
+        popup.show()
+        return false
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_list, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.itemCreateRecipe) {
+            val recipeCreateFragment = RecipeCreateFragment()
+            recipeCreateFragment.show(supportFragmentManager, "TAG")
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onRecipeCreated(beerRecipe: BeerRecipe) {
+        simpleItemRecyclerViewAdapter.addItem(beerRecipe)
     }
 
     fun fillListWithDefValues(){
@@ -187,4 +220,5 @@ class RecipeListActivity : AppCompatActivity(),
 
         simpleItemRecyclerViewAdapter.addAll(demoData)
     }
+
 }
