@@ -51,8 +51,14 @@ RecipeCreateFragment.RecipeCreatedListener{
         popup.inflate(R.menu.menu_recipe)
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
-                R.id.delete -> simpleItemRecyclerViewAdapter.deleteRow(position)
+                R.id.delete -> {
+                    simpleItemRecyclerViewAdapter.deleteRow(position)
+                }
+                R.id.modify -> {
+                  //  val todoUpdateFragment = RecipeUpdateFragment(recipe)
+                  //  todoUpdateFragment.show(supportFragmentManager,"TAG")
             }
+        }
             false
         }
         popup.show()
@@ -96,8 +102,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min")
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm")
                 ),
                 "Safale us-5"
             ),
@@ -120,8 +126,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min")
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm")
                 ),
                 "Safale us-5"
             ),
@@ -143,8 +149,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min")
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm")
                 ),
                 "Safale us-5"
             ),
@@ -166,8 +172,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min")
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm")
                 ),
                 "Safale us-5"
             ),BeerRecipe(5,
@@ -188,8 +194,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min"),
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm"),
                 ),
                 "Safale us-5"
             ),
@@ -211,8 +217,8 @@ RecipeCreateFragment.RecipeCreatedListener{
 
                 FermentTemp(20,"Celsius"),
                 mutableListOf(
-                    Malt("Oris matter",5.0,"kg"),
-                    Hop("fugglet",50.0,"gm","10min")
+                    Ingredient("Oris matter",5.0,"kg"),
+                    Ingredient("fugglet",50.0,"gm")
                 ),
                 "Safale us-5"
             )

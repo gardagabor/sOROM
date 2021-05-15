@@ -69,8 +69,8 @@ class RecipeCreateFragment : DialogFragment() {
                 ingredients.add(
                         Ingredient(
                                 it.tvIngredientNameDeletable.text.toString(),
-                                it.tvIngredientUnitDeletable.text.toString(),
-                                it.tvIngredientValueDeletable.text.toString().toInt()
+                                it.tvIngredientValueDeletable.text.toString().toDouble(),
+                                it.tvIngredientUnitDeletable.text.toString()
                         )
                 )
 
@@ -78,23 +78,23 @@ class RecipeCreateFragment : DialogFragment() {
 
 
             listener.onRecipeCreated(
-                    BeerRecipe(100,
-                            binding.etCreateName.text.toString(),
-                            binding.etCreateTagline.text.toString(),
-                            binding.etCreateDate.text.toString(),
-                            binding.etCreateDescription.text.toString(),
-                            binding.etCreateAbv.text.toString().toDouble(),
-                            binding.etCreateIbu.text.toString().toInt(),
-                            binding.etCreateTargetFg.text.toString().toInt(),
-                            binding.etCreateTargetOg.text.toString().toInt(),
-                            binding.etCreateEbc.text.toString().toInt(),
-                            WaterVolume(binding.etCreateVolume.text.toString().toInt(),"liter"),
-                            WaterVolume(binding.etCreateBoilVolume.text.toString().toInt(),"litre"),
-                            steps,
-                            FermentTemp(binding.etCreateFermentation.text.toString().toInt(),"Celsius"),
-                            ingredients,
-                            binding.etCreateYeast.text.toString()
-                    )
+                        BeerRecipe(100,
+                                binding.etCreateName?.text!!.toString(),
+                                binding.etCreateTagline?.text!!.toString(),
+                                binding.etCreateDate?.text!!.toString(),
+                                binding.etCreateDescription?.text!!.toString(),
+                                binding.etCreateAbv?.text!!.toString().toDouble(),
+                                binding.etCreateIbu?.text!!.toString().toInt(),
+                                binding.etCreateTargetFg?.text!!.toString().toInt(),
+                                binding.etCreateTargetOg?.text!!.toString().toInt(),
+                                binding.etCreateEbc?.text!!.toString().toInt(),
+                                WaterVolume(binding.etCreateVolume?.text!!.toString().toInt(), "liter"),
+                                WaterVolume(binding.etCreateBoilVolume?.text!!.toString().toInt(), "litre"),
+                                steps,
+                                FermentTemp(binding.etCreateFermentation?.text!!.toString().toInt(), "Celsius"),
+                                ingredients,
+                                binding.etCreateYeast?.text!!.toString()
+                        )
             )
             dismiss()
         }

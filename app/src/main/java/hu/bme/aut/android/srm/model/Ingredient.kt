@@ -1,7 +1,9 @@
 package hu.bme.aut.android.srm.model
 
-interface Ingredient {
-    val name : String
-    val value : Double
-    val unit : String
-}
+import java.io.Serializable
+
+data class Ingredient(
+        val name : String,
+        val value : Double,
+        val unit : String
+    ) : Serializable
