@@ -133,15 +133,17 @@
             app:layout_constraintStart_toEndOf="@+id/btnSearch"
             app:layout_constraintTop_toTopOf="@+id/btnSearch" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvFoundRecipes"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="316dp"
-            android:scrollbars="vertical"
+            android:layout_marginTop="300dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/recipe_list" />
+        </FrameLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

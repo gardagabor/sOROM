@@ -1,13 +1,13 @@
 package hu.bme.aut.android.srm
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 import hu.bme.aut.android.srm.adapter.MyRecipiesAdapter
 import hu.bme.aut.android.srm.databinding.ActivityMainBinding
 import hu.bme.aut.android.srm.model.*
+
 
 class RecipeListActivity : AppCompatActivity(),
     MyRecipiesAdapter.BeerRecipeItemClickListener,
@@ -54,7 +55,7 @@ RecipeUpdateFragment.RecipeUpdatedListener{
         startActivity(intent)
     }
 
-    override fun onItemLongClick(position: Int, view: View, recipe : BeerRecipe): Boolean {
+    override fun onItemLongClick(position: Int, view: View, recipe: BeerRecipe): Boolean {
         val popup = PopupMenu(this, view)
         popup.inflate(R.menu.menu_recipe)
         popup.setOnMenuItemClickListener { item ->
@@ -69,8 +70,8 @@ RecipeUpdateFragment.RecipeUpdatedListener{
 
                 R.id.modify -> {
                     val todoUpdateFragment = RecipeUpdateFragment(recipe)
-                    todoUpdateFragment.show(supportFragmentManager,"TAG")
-            }
+                    todoUpdateFragment.show(supportFragmentManager, "TAG")
+                }
         }
             false
         }
@@ -91,7 +92,7 @@ RecipeUpdateFragment.RecipeUpdatedListener{
             }
             R.id.itemSearchRecipe -> {
                 val intent = Intent(this, RecipeSearchActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent, 0)
             }
         }
 
@@ -99,7 +100,6 @@ RecipeUpdateFragment.RecipeUpdatedListener{
     }
 
     override fun onRecipeCreated(beerRecipe: BeerRecipe) {
-      // simpleItemRecyclerViewAdapter.addItem(beerRecipe)
         val db = Firebase.firestore
 
         db.collection("recipes")
@@ -108,12 +108,22 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 toast("Recipe created")
             }
             .addOnFailureListener { e -> toast(e.toString()) }
-
-
-
     }
 
-    override fun onRecipeUpdated(oldRecipe: BeerRecipe, newRecipe : BeerRecipe){
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            val passedItem: ArrayList<BeerRecipe>? = data?.extras!!["new_added_recipes"] as ArrayList<BeerRecipe>?
+            val db = Firebase.firestore
+            passedItem?.forEach {
+                db.collection("recipes")
+                    .add(it)
+                    .addOnFailureListener { e -> toast(e.toString()) }
+            }
+        }
+    }
+
+    override fun onRecipeUpdated(oldRecipe: BeerRecipe, newRecipe: BeerRecipe){
         myRecipiesAdapter.deleteElement(oldRecipe)
         myRecipiesAdapter.addItem(newRecipe)
 
@@ -143,7 +153,8 @@ RecipeUpdateFragment.RecipeUpdatedListener{
 
     fun fillListWithDefValues(){
         val demoData = mutableListOf(
-            BeerRecipe(1,
+            BeerRecipe(
+                1,
                 "Milk Stout",
                 "Best stout",
                 "2020-02-20",
@@ -153,20 +164,21 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",60)
+                    TempStep(65, "Celsius", 60)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm")
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm")
                 ),
                 "Safale us-5"
             ),
-            BeerRecipe(2,
+            BeerRecipe(
+                2,
                 "English Ale",
                 "Ale >> lager",
                 "2020-02-20",
@@ -176,21 +188,22 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",20),
-                    TempStep(70,"Celsius",30)
+                    TempStep(65, "Celsius", 20),
+                    TempStep(70, "Celsius", 30)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm")
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm")
                 ),
                 "Safale us-5"
             ),
-            BeerRecipe(3,
+            BeerRecipe(
+                3,
                 "English pride",
                 "better than my coding skills",
                 "2020-02-20",
@@ -200,20 +213,21 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",60)
+                    TempStep(65, "Celsius", 60)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm")
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm")
                 ),
                 "Safale us-5"
             ),
-            BeerRecipe(4,
+            BeerRecipe(
+                4,
                 "London porter",
                 "Hey porter, heeeey porter",
                 "2020-02-20",
@@ -223,19 +237,20 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",60)
+                    TempStep(65, "Celsius", 60)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm")
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm")
                 ),
                 "Safale us-5"
-            ),BeerRecipe(5,
+            ), BeerRecipe(
+                5,
                 "I wanna be ",
                 "beerstro man",
                 "2020-02-20",
@@ -245,20 +260,21 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",60)
+                    TempStep(65, "Celsius", 60)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm"),
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm"),
                 ),
                 "Safale us-5"
             ),
-            BeerRecipe(6,
+            BeerRecipe(
+                6,
                 "Running out ale",
                 "of ideas hops",
                 "2020-02-20",
@@ -268,16 +284,16 @@ RecipeUpdateFragment.RecipeUpdatedListener{
                 1010,
                 1060,
                 80,
-                WaterVolume(20,"litre"),
-                WaterVolume(25,"litre"),
+                WaterVolume(20, "litre"),
+                WaterVolume(25, "litre"),
                 mutableListOf(
-                    TempStep(65,"Celsius",60)
+                    TempStep(65, "Celsius", 60)
                 ),
 
-                FermentTemp(20,"Celsius"),
+                FermentTemp(20, "Celsius"),
                 mutableListOf(
-                    Ingredient("Oris matter",5.0,"kg"),
-                    Ingredient("fugglet",50.0,"gm")
+                    Ingredient("Oris matter", 5.0, "kg"),
+                    Ingredient("fugglet", 50.0, "gm")
                 ),
                 "Safale us-5"
             )
