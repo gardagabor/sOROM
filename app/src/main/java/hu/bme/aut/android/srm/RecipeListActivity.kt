@@ -14,7 +14,8 @@ import hu.bme.aut.android.srm.model.*
 
 class RecipeListActivity : AppCompatActivity(),
     SimpleItemRecyclerViewAdapter.BeerRecipeItemClickListener,
-RecipeCreateFragment.RecipeCreatedListener{
+RecipeCreateFragment.RecipeCreatedListener,
+RecipeUpdateFragment.RecipeUpdatedListener{
 
     private lateinit var binding: ActivityMainBinding
 
@@ -46,7 +47,7 @@ RecipeCreateFragment.RecipeCreatedListener{
         startActivity(intent)
     }
 
-    override fun onItemLongClick(position: Int, view: View): Boolean {
+    override fun onItemLongClick(position: Int, view: View, recipe : BeerRecipe): Boolean {
         val popup = PopupMenu(this, view)
         popup.inflate(R.menu.menu_recipe)
         popup.setOnMenuItemClickListener { item ->
@@ -55,8 +56,8 @@ RecipeCreateFragment.RecipeCreatedListener{
                     simpleItemRecyclerViewAdapter.deleteRow(position)
                 }
                 R.id.modify -> {
-                  //  val todoUpdateFragment = RecipeUpdateFragment(recipe)
-                  //  todoUpdateFragment.show(supportFragmentManager,"TAG")
+                    val todoUpdateFragment = RecipeUpdateFragment(recipe)
+                    todoUpdateFragment.show(supportFragmentManager,"TAG")
             }
         }
             false
@@ -80,6 +81,11 @@ RecipeCreateFragment.RecipeCreatedListener{
 
     override fun onRecipeCreated(beerRecipe: BeerRecipe) {
         simpleItemRecyclerViewAdapter.addItem(beerRecipe)
+    }
+
+    override fun onRecipeUpdated(oldRecipe: BeerRecipe, newRecipe : BeerRecipe){
+        simpleItemRecyclerViewAdapter.deleteElement(oldRecipe)
+        simpleItemRecyclerViewAdapter.addItem(newRecipe)
     }
 
     fun fillListWithDefValues(){

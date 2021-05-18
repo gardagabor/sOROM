@@ -43,6 +43,15 @@ class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerVie
         notifyItemRemoved(position)
     }
 
+    fun deleteElement(beerRecipe: BeerRecipe){
+        val index = beerRecipeList.indexOf(beerRecipe)
+        beerRecipeList.remove(beerRecipe)
+        notifyItemRemoved(index)
+
+    }
+
+
+
     override fun getItemCount() = beerRecipeList.size
 
     inner class ViewHolder(val binding: RowRecipeBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -54,7 +63,7 @@ class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerVie
             }
 
             itemView.setOnLongClickListener { view ->
-                itemClickListener?.onItemLongClick(adapterPosition, view)
+                 beerRecipe?.let { beerRecipe ->  itemClickListener?.onItemLongClick(adapterPosition,view,beerRecipe) }
                 true
             }
         }
@@ -62,7 +71,7 @@ class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerVie
 
     interface BeerRecipeItemClickListener {
         fun onItemClick(beerRecipe: BeerRecipe)
-        fun onItemLongClick(position: Int, view: View): Boolean
+        fun onItemLongClick(position: Int, view: View, recipe : BeerRecipe): Boolean
     }
 
 

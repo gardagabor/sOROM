@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:text="Name"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:text="Value"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/tvIngredientNameDeletable"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:text="Unit"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/tvIngredientValueDeletable"
         app:layout_constraintTop_toTopOf="parent" />
 
