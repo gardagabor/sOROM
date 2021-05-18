@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.android.srm.databinding.RowRecipeBinding
 import hu.bme.aut.android.srm.model.*
 
-class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
+class MyRecipiesAdapter : RecyclerView.Adapter<MyRecipiesAdapter.ViewHolder>() {
 
     private val beerRecipeList = mutableListOf<BeerRecipe>()
 

@@ -1,9 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecipeSearchActivity">
+    android:fillViewport="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".RecipeSearchActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/etSearchName"
+            android:layout_width="170dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="108dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toEndOf="@+id/labelSearchName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelSearchEbc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Ebc:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/labelSearchAbv" />
+
+        <EditText
+            android:id="@+id/etSearchEbc"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:ems="10"
+            android:hint="Ebc"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toStartOf="@+id/etSearchAbv"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchAbv" />
+
+
+
+        <TextView
+            android:id="@+id/labelSearchName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Name:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinnerAbv"
+            android:background="#FFFFFF"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:dropDownWidth="60dp"
+            android:scrollbarSize="8dp"
+            app:layout_constraintStart_toEndOf="@+id/labelSearchAbv"
+            app:layout_constraintTop_toTopOf="@+id/labelSearchAbv" />
+
+        <Spinner
+            android:id="@+id/spinnerEbc"
+            android:background="#FFFFFF"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:dropDownWidth="60dp"
+            android:scrollbarSize="8dp"
+            app:layout_constraintStart_toStartOf="@+id/spinnerAbv"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerAbv" />
+
+        <TextView
+            android:id="@+id/labelSearchAbv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Abv:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/labelSearchName" />
+
+        <EditText
+            android:id="@+id/etSearchAbv"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:hint="Abv"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/etSearchName"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchName" />
+
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="32dp"
+            android:text="Search"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/labelSearchEbc" />
+
+        <Button
+            android:id="@+id/btnSearchCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:text="Cancel"
+            app:layout_constraintStart_toEndOf="@+id/btnSearch"
+            app:layout_constraintTop_toTopOf="@+id/btnSearch" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFoundRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="316dp"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

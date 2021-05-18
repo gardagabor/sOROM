@@ -3,7 +3,6 @@ package hu.bme.aut.android.srm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,23 +10,21 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
-import hu.bme.aut.android.srm.adapter.SimpleItemRecyclerViewAdapter
+import hu.bme.aut.android.srm.adapter.MyRecipiesAdapter
 import hu.bme.aut.android.srm.databinding.ActivityMainBinding
 import hu.bme.aut.android.srm.model.*
 
 class RecipeListActivity : AppCompatActivity(),
-    SimpleItemRecyclerViewAdapter.BeerRecipeItemClickListener,
+    MyRecipiesAdapter.BeerRecipeItemClickListener,
 RecipeCreateFragment.RecipeCreatedListener,
 RecipeUpdateFragment.RecipeUpdatedListener{
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var simpleItemRecyclerViewAdapter: SimpleItemRecyclerViewAdapter
+    private lateinit var myRecipiesAdapter: MyRecipiesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +42,10 @@ RecipeUpdateFragment.RecipeUpdatedListener{
 
     private fun setupRecyclerView() {
 
-        simpleItemRecyclerViewAdapter = SimpleItemRecyclerViewAdapter()
-        simpleItemRecyclerViewAdapter.itemClickListener = this
+        myRecipiesAdapter = MyRecipiesAdapter()
+        myRecipiesAdapter.itemClickListener = this
       //fillListWithDefValues()
-        binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = simpleItemRecyclerViewAdapter
+        binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = myRecipiesAdapter
     }
 
     override fun onItemClick(beerRecipe: BeerRecipe) {
@@ -117,8 +114,8 @@ RecipeUpdateFragment.RecipeUpdatedListener{
     }
 
     override fun onRecipeUpdated(oldRecipe: BeerRecipe, newRecipe : BeerRecipe){
-        simpleItemRecyclerViewAdapter.deleteElement(oldRecipe)
-        simpleItemRecyclerViewAdapter.addItem(newRecipe)
+        myRecipiesAdapter.deleteElement(oldRecipe)
+        myRecipiesAdapter.addItem(newRecipe)
 
     }
 
@@ -137,8 +134,8 @@ RecipeUpdateFragment.RecipeUpdatedListener{
 
                 for (dc in snapshots!!.documentChanges) {
                     when (dc.type) {
-                        DocumentChange.Type.ADDED -> simpleItemRecyclerViewAdapter.addItem(dc.document.toObject<BeerRecipe>())
-                        DocumentChange.Type.REMOVED -> simpleItemRecyclerViewAdapter.deleteElement(dc.document.toObject<BeerRecipe>())
+                        DocumentChange.Type.ADDED -> myRecipiesAdapter.addItem(dc.document.toObject<BeerRecipe>())
+                        DocumentChange.Type.REMOVED -> myRecipiesAdapter.deleteElement(dc.document.toObject<BeerRecipe>())
                     }
                 }
             }
@@ -286,7 +283,7 @@ RecipeUpdateFragment.RecipeUpdatedListener{
             )
         )
 
-        simpleItemRecyclerViewAdapter.addAll(demoData)
+        myRecipiesAdapter.addAll(demoData)
     }
 
 }
