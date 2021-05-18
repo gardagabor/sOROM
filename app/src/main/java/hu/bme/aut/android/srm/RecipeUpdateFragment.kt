@@ -112,12 +112,12 @@ class RecipeUpdateFragment(val recipe : BeerRecipe) : DialogFragment() {
         binding.etCreateTargetFg.setText(recipe.targetFg.toString())
         binding.etCreateTargetOg.setText(recipe.targetOg.toString())
         binding.etCreateEbc.setText(recipe.ebc.toString())
-        binding.etCreateVolume.setText(recipe.volume.value.toString())
-        binding.etCreateBoilVolume.setText(recipe.boilVolume.value.toString())
+        binding.etCreateVolume.setText(recipe.volume?.value.toString())
+        binding.etCreateBoilVolume.setText(recipe.boilVolume?.value.toString())
 
         fillBindingWithMashSteps()
 
-        binding.etCreateFermentation.setText(recipe.fermentation.value.toString())
+        binding.etCreateFermentation.setText(recipe.fermentation?.value.toString())
 
         fillBindingWithIngredients()
 
@@ -127,7 +127,7 @@ class RecipeUpdateFragment(val recipe : BeerRecipe) : DialogFragment() {
     }
 
     private fun fillBindingWithIngredients() {
-        recipe.ingredients.forEach{
+        recipe.ingredients?.forEach{
             val inflater = LayoutInflater.from(this.context).inflate(R.layout.ingredient_row_deletable, null, false)
 
             inflater.tvIngredientNameDeletable.text = it.name
@@ -143,7 +143,7 @@ class RecipeUpdateFragment(val recipe : BeerRecipe) : DialogFragment() {
     }
 
     private fun fillBindingWithMashSteps() {
-        recipe.mashTemps.forEach{
+        recipe.mashTemps?.forEach{
             val inflater = LayoutInflater.from(this.context).inflate(R.layout.temperature_step_deletable, null, false)
 
             inflater.tvTempValueDeletable.text = it.value.toString()

@@ -3,11 +3,19 @@ package hu.bme.aut.android.srm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import hu.bme.aut.android.srm.adapter.SimpleItemRecyclerViewAdapter
 import hu.bme.aut.android.srm.databinding.ActivityMainBinding
 import hu.bme.aut.android.srm.model.*
@@ -31,13 +39,15 @@ RecipeUpdateFragment.RecipeUpdatedListener{
 
         setupRecyclerView()
 
+        initPostsListener()
+
     }
 
     private fun setupRecyclerView() {
 
         simpleItemRecyclerViewAdapter = SimpleItemRecyclerViewAdapter()
         simpleItemRecyclerViewAdapter.itemClickListener = this
-        fillListWithDefValues()
+      //fillListWithDefValues()
         binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = simpleItemRecyclerViewAdapter
     }
 
@@ -53,8 +63,13 @@ RecipeUpdateFragment.RecipeUpdatedListener{
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.delete -> {
-                    simpleItemRecyclerViewAdapter.deleteRow(position)
+                    val db = Firebase.firestore
+
+                    ///Todo: Url-jét megszerezni az elemnek, amivel utána ki lehet törölni
+//                    db.collection("recipes").document()
+//                        .delete()
                 }
+
                 R.id.modify -> {
                     val todoUpdateFragment = RecipeUpdateFragment(recipe)
                     todoUpdateFragment.show(supportFragmentManager,"TAG")
@@ -72,20 +87,61 @@ RecipeUpdateFragment.RecipeUpdatedListener{
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.itemCreateRecipe) {
-            val recipeCreateFragment = RecipeCreateFragment()
-            recipeCreateFragment.show(supportFragmentManager, "TAG")
+        when (item.itemId) {
+            R.id.itemCreateRecipe -> {
+                val recipeCreateFragment = RecipeCreateFragment()
+                recipeCreateFragment.show(supportFragmentManager, "TAG")
+            }
+            R.id.itemSearchRecipe -> {
+                val intent = Intent(this, RecipeSearchActivity::class.java)
+                startActivity(intent)
+            }
         }
+
         return super.onOptionsItemSelected(item)
     }
 
     override fun onRecipeCreated(beerRecipe: BeerRecipe) {
-        simpleItemRecyclerViewAdapter.addItem(beerRecipe)
+      // simpleItemRecyclerViewAdapter.addItem(beerRecipe)
+        val db = Firebase.firestore
+
+        db.collection("recipes")
+            .add(beerRecipe)
+            .addOnSuccessListener {
+                toast("Recipe created")
+            }
+            .addOnFailureListener { e -> toast(e.toString()) }
+
+
+
     }
 
     override fun onRecipeUpdated(oldRecipe: BeerRecipe, newRecipe : BeerRecipe){
         simpleItemRecyclerViewAdapter.deleteElement(oldRecipe)
         simpleItemRecyclerViewAdapter.addItem(newRecipe)
+
+    }
+
+    private fun toast(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun initPostsListener() {
+        val db = Firebase.firestore
+        db.collection("recipes")
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                for (dc in snapshots!!.documentChanges) {
+                    when (dc.type) {
+                        DocumentChange.Type.ADDED -> simpleItemRecyclerViewAdapter.addItem(dc.document.toObject<BeerRecipe>())
+                        DocumentChange.Type.REMOVED -> simpleItemRecyclerViewAdapter.deleteElement(dc.document.toObject<BeerRecipe>())
+                    }
+                }
+            }
     }
 
     fun fillListWithDefValues(){

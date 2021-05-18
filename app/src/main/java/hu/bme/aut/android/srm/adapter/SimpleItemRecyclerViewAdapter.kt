@@ -14,11 +14,11 @@ class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerVie
     var itemClickListener: BeerRecipeItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(RowRecipeBinding.inflate(
-        LayoutInflater.from(parent.context), parent, false))
+            LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val beerRecipe = beerRecipeList[position]
-        
+
         holder.beerRecipe = beerRecipe
 
         holder.binding.tvName.text = beerRecipe.name
@@ -44,9 +44,14 @@ class SimpleItemRecyclerViewAdapter : RecyclerView.Adapter<SimpleItemRecyclerVie
     }
 
     fun deleteElement(beerRecipe: BeerRecipe){
-        val index = beerRecipeList.indexOf(beerRecipe)
-        beerRecipeList.remove(beerRecipe)
-        notifyItemRemoved(index)
+        var actualRecipe : BeerRecipe? = null
+        beerRecipeList.forEach{
+            if(beerRecipe.id?.equals(it.id) == true){
+                actualRecipe = it
+            }
+        }
+        beerRecipeList.remove(actualRecipe)
+        notifyItemRemoved(beerRecipeList.indexOf(actualRecipe))
 
     }
 

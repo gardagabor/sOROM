@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "472035387509",
+    "project_id": "sorom-bdb4c",
+    "storage_bucket": "sorom-bdb4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472035387509:android:013d1d5ca460f9b3deb03c",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.android.srm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472035387509-narajsmbe103sen34ljti3104nmpmmnk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.bme.aut.android.srm",
+            "certificate_hash": "73209208342fbbbfa3b159d48f709526faf3b25f"
+          }
+        },
+        {
+          "client_id": "472035387509-q147km0h2qvvupgo73auof0teucjb78p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeLM8sdGg_LdrzeeT0IcJmBS6iA2hB470"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472035387509-q147km0h2qvvupgo73auof0teucjb78p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

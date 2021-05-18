@@ -1,23 +1,22 @@
 package hu.bme.aut.android.srm.model
 
 import java.io.Serializable
-import java.util.*
 
-data class BeerRecipe (
-    val id : Int,
-    val name : String,
-    val tagline : String,
-    val date : String,
-    val description : String,
-    val abv : Double,
-    val ibu : Int,
-    val targetFg : Int,
-    val targetOg : Int,
-    val ebc : Int,
-    val volume : WaterVolume,
-    val boilVolume : WaterVolume,
-    val mashTemps : MutableList<TempStep>,
-    val fermentation : FermentTemp,
-    val ingredients : MutableList<Ingredient>,
-    val yeast : String
+class BeerRecipe (
+    var id : Int? = null,
+    var name : String? = null,
+    val tagline : String? = null,
+    val date : String? = null,
+    val description : String? = null,
+    val abv : Double? = null,
+    val ibu : Int? = null,
+    val targetFg : Int? = null,
+    val targetOg : Int? = null,
+    val ebc : Int? = null,
+    val volume : WaterVolume? = null,
+    val boilVolume : WaterVolume? = null,
+    val mashTemps : MutableList<TempStep>? = null,
+    val fermentation : FermentTemp? = null,
+    val ingredients : MutableList<Ingredient>? = null,
+    val yeast : String? = null
 ) : Serializable
