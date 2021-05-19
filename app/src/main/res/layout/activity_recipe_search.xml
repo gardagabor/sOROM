@@ -142,7 +142,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="parent">
 
-            <include layout="@layout/recipe_list" />
+            <include layout="@layout/recipe_list"/>
         </FrameLayout>
 
 

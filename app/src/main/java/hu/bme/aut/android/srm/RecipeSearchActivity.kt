@@ -9,9 +9,12 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.common.FirstPartyScopes
 import hu.bme.aut.android.srm.adapter.FoundRecipiesAdapter
 import hu.bme.aut.android.srm.databinding.ActivityRecipeSearchBinding
 import hu.bme.aut.android.srm.model.*
+import hu.bme.aut.android.srm.model.json.JsonRecipe
+import hu.bme.aut.android.srm.network.RecipeInteractor
 import kotlinx.android.synthetic.main.activity_recipe_search.*
 
 class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener,
@@ -27,6 +30,10 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnSearch.setOnClickListener{
+            loadRecipes()
+        }
 
         binding.btnSearchCancel.setOnClickListener {
             finish()
@@ -54,59 +61,7 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
 
     private fun setupRecyclerView() {
 
-        adapter = FoundRecipiesAdapter(
-            this, mutableListOf(
-                BeerRecipe(
-                    1,
-                    "Milk Stout",
-                    "Best stout",
-                    "2020-02-20",
-                    "Best stout, u never see before",
-                    6.5,
-                    30,
-                    1010,
-                    1060,
-                    80,
-                    WaterVolume(20, "litre"),
-                    WaterVolume(25, "litre"),
-                    mutableListOf(
-                        TempStep(65, "Celsius", 60)
-                    ),
-
-                    FermentTemp(20, "Celsius"),
-                    mutableListOf(
-                        Ingredient("Oris matter", 5.0, "kg"),
-                        Ingredient("fugglet", 50.0, "gm")
-                    ),
-                    "Safale us-5"
-                ),
-                BeerRecipe(
-                    2,
-                    "English Ale",
-                    "Ale >> lager",
-                    "2020-02-20",
-                    "Ale power",
-                    6.5,
-                    30,
-                    1010,
-                    1060,
-                    80,
-                    WaterVolume(20, "litre"),
-                    WaterVolume(25, "litre"),
-                    mutableListOf(
-                        TempStep(65, "Celsius", 20),
-                        TempStep(70, "Celsius", 30)
-                    ),
-
-                    FermentTemp(20, "Celsius"),
-                    mutableListOf(
-                        Ingredient("Oris matter", 5.0, "kg"),
-                        Ingredient("fugglet", 50.0, "gm")
-                    ),
-                    "Safale us-5"
-                )
-            )
-        )
+        adapter = FoundRecipiesAdapter(this, mutableListOf())
         adapter.itemClickListener = this
         binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = adapter
     }
@@ -171,5 +126,35 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
         return false
     }
 
+
+    private fun loadRecipes() {
+        val recipeInteractor = RecipeInteractor()
+        recipeInteractor.getRecipes(onSuccess = this::showRecipes, onError = this::showError)
+    }
+
+    private fun showRecipes(recipes: List<JsonRecipe>) {
+        adapter = FoundRecipiesAdapter(applicationContext, convertRecipies(recipes as MutableList<JsonRecipe>))
+        adapter.itemClickListener = this
+        binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = adapter
+    }
+
+    private fun showError(e: Throwable) {
+        e.printStackTrace()
+    }
+
+    private fun convertRecipies(jsonRecipeList : MutableList<JsonRecipe>): MutableList<BeerRecipe> {
+        var newlist = mutableListOf<BeerRecipe>()
+
+        jsonRecipeList.forEach {
+            newlist.add(
+                BeerRecipe(
+                    it.id,
+                    it.name,
+                    it.tagline
+            )
+            )
+        }
+        return newlist
+    }
 
 }
