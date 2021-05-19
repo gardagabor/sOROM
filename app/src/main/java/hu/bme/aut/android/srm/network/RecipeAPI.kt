@@ -12,6 +12,9 @@ interface RecipeAPI {
         const val IMAGE_PREFIX_URL = "https://punkapi.com/"
     }
 
-    @GET("beers?brewed_before=11-2012&abv_gt=6")
-    fun getRecipes(): Call<List<JsonRecipe>>
+    @GET("beers")
+    fun getAllRecipies(): Call<List<JsonRecipe>>
+
+    @GET("beers/1")
+    fun getFilteredRecipies() : Call<List<JsonRecipe>>
 }

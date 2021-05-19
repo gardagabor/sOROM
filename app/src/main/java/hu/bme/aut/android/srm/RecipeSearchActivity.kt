@@ -9,7 +9,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.common.FirstPartyScopes
 import hu.bme.aut.android.srm.adapter.FoundRecipiesAdapter
 import hu.bme.aut.android.srm.databinding.ActivityRecipeSearchBinding
 import hu.bme.aut.android.srm.model.*
@@ -129,7 +128,10 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
 
     private fun loadRecipes() {
         val recipeInteractor = RecipeInteractor()
-        recipeInteractor.getRecipes(onSuccess = this::showRecipes, onError = this::showError)
+        if(binding.etSearchName.text.isEmpty() && binding.etSearchAbv.text.isEmpty() && binding.etSearchEbc.text.isEmpty())
+            recipeInteractor.getAllRecipies(onSuccess = this::showRecipes, onError = this::showError)
+        else
+            recipeInteractor.getFilteredRecipies(onSuccess = this::showRecipes, onError = this::showError)
     }
 
     private fun showRecipes(recipes: List<JsonRecipe>) {
@@ -143,18 +145,80 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
     }
 
     private fun convertRecipies(jsonRecipeList : MutableList<JsonRecipe>): MutableList<BeerRecipe> {
-        var newlist = mutableListOf<BeerRecipe>()
+        var newIngredientlist = mutableListOf<BeerRecipe>()
 
         jsonRecipeList.forEach {
-            newlist.add(
+            var ingredientList = convertIngredientList(it)
+            var tempStepsList = convertTempStepsList(it)
+            newIngredientlist.add(
                 BeerRecipe(
                     it.id,
                     it.name,
-                    it.tagline
+                    it.tagline,
+                    it.first_brewed,
+                    it.description?.substring(0,10),
+                    it.abv,
+                    it.ibu,
+                    it.target_fg,
+                    it.target_og,
+                    it.ebc,
+                    WaterVolume(it.volume?.value, it.volume?.unit),
+                    WaterVolume(it.boil_volume?.value, it.boil_volume?.unit),
+                    tempStepsList,
+                    FermentTemp(it.method?.fermentation?.temp?.value,
+                        it.method?.fermentation?.temp?.unit
+                    ),
+                    ingredientList,
+                    it.ingredients?.yeast
             )
             )
         }
-        return newlist
+        return newIngredientlist
     }
+
+    private fun convertTempStepsList(jsonRecipe: JsonRecipe): MutableList<TempStep> {
+        var newTempStepList = mutableListOf<TempStep>()
+
+        jsonRecipe.method?.mash_temp?.forEach {mashTemp ->
+            newTempStepList.add(
+                TempStep(
+                    mashTemp.temp?.value,
+                    mashTemp.temp?.unit,
+                    mashTemp.duration
+                )
+            )
+        }
+
+        return newTempStepList
+    }
+
+    private fun convertIngredientList(jsonRecipe : JsonRecipe): MutableList<Ingredient> {
+
+        var convertedIngredientList = mutableListOf<Ingredient>()
+
+            jsonRecipe.ingredients?.hops?.forEach {hop ->
+                convertedIngredientList.add(
+                    Ingredient(
+                        hop.name,
+                        hop.amount?.value,
+                        hop.amount?.unit
+                    )
+                )
+            }
+
+            jsonRecipe.ingredients?.malt?.forEach {malt->
+                convertedIngredientList.add(
+                    Ingredient(
+                        malt.name,
+                        malt.amount?.value,
+                        malt.amount?.unit
+                    )
+                )
+            }
+
+
+        return convertedIngredientList
+    }
+
 
 }

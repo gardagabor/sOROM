@@ -52,9 +52,9 @@ class RecipeUpdateFragment(val recipe : BeerRecipe) : DialogFragment() {
             binding.MashTemps.forEach {
                 steps.add(
                         TempStep(
-                                it.tvTempValueDeletable.text.toString().toInt(),
+                                it.tvTempValueDeletable.text.toString().toDouble(),
                                 it.tvTempUnitDeletable.text.toString(),
-                                it.tvTempDurationDeletable.text.toString().toInt()
+                                it.tvTempDurationDeletable.text.toString().toDouble()
                         )
                 )
 
@@ -80,14 +80,14 @@ class RecipeUpdateFragment(val recipe : BeerRecipe) : DialogFragment() {
                             binding.etCreateDate?.text!!.toString(),
                             binding.etCreateDescription?.text!!.toString(),
                             binding.etCreateAbv?.text!!.toString().toDouble(),
-                            binding.etCreateIbu?.text!!.toString().toInt(),
-                            binding.etCreateTargetFg?.text!!.toString().toInt(),
-                            binding.etCreateTargetOg?.text!!.toString().toInt(),
-                            binding.etCreateEbc?.text!!.toString().toInt(),
-                            WaterVolume(binding.etCreateVolume?.text!!.toString().toInt(), "liter"),
-                            WaterVolume(binding.etCreateBoilVolume?.text!!.toString().toInt(), "litre"),
+                            binding.etCreateIbu?.text!!.toString().toDouble(),
+                            binding.etCreateTargetFg?.text!!.toString().toDouble(),
+                            binding.etCreateTargetOg?.text!!.toString().toDouble(),
+                            binding.etCreateEbc?.text!!.toString().toDouble(),
+                            WaterVolume(binding.etCreateVolume?.text!!.toString().toDouble(), "liter"),
+                            WaterVolume(binding.etCreateBoilVolume?.text!!.toString().toDouble(), "litre"),
                             steps,
-                            FermentTemp(binding.etCreateFermentation?.text!!.toString().toInt(), "Celsius"),
+                            FermentTemp(binding.etCreateFermentation?.text!!.toString().toDouble(), "Celsius"),
                             ingredients,
                             binding.etCreateYeast?.text!!.toString()
                     )

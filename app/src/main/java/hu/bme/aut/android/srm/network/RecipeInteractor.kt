@@ -2,8 +2,6 @@ package hu.bme.aut.android.srm.network
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.widget.Toast
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import hu.bme.aut.android.srm.model.json.JsonRecipe
@@ -27,14 +25,26 @@ class RecipeInteractor {
         this.recipeApi = retrofit.create(RecipeAPI::class.java)
     }
 
-    fun getRecipes(
+    fun getAllRecipies(
         onSuccess: (List<JsonRecipe>) -> Unit,
         onError: (Throwable) -> Unit
     )
     {
-        val getRecipesRequest = recipeApi.getRecipes()
+        val getRecipesRequest = recipeApi.getAllRecipies()
         runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
     }
+
+    fun getFilteredRecipies(
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipies()
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+
+
     private fun <T> runCallOnBackgroundThread(
         call: Call<T>,
         onSuccess: (T) -> Unit,
