@@ -34,13 +34,79 @@ class RecipeInteractor {
         runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
     }
 
-    fun getFilteredRecipies(
+    fun getFilteredRecipiesNameOnly(
         name : String,
         onSuccess: (List<JsonRecipe>) -> Unit,
         onError: (Throwable) -> Unit
     )
     {
-        val getRecipesRequest = recipeApi.getFilteredRecipies(name)
+        val getRecipesRequest = recipeApi.getFilteredRecipiesNameOnly(name)
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+    fun getFilteredRecipiesAbvOnly(
+        abv : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipiesAbvOnly(abv+0.5,abv-0.5)
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+    fun getFilteredRecipiesEbcOnly(
+        ebc : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipiesEbcOnly(ebc + 5,ebc -5 )
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+    fun getFilteredRecipiesNameAndAbvOnly(
+        name : String,
+        abv : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipiesNameAndAbvOnly(name, abv + 0.5,abv - 0.5 )
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+    fun getFilteredRecipiesNameAndEbcOnly(
+        name : String,
+        ebc : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipiesNameAndEbcOnly(name, ebc + 5,ebc -5 )
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+    fun getFilteredRecipiesAbvAndEbcOnly(
+        abv : Double,
+        ebc : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipiesAbvAndEbcOny(abv + 0.5, abv - 0.5 , ebc + 5,ebc -5)
+        runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
+    }
+
+
+    fun getFilteredRecipies(
+        name : String,
+        abv : Double,
+        ebc : Double,
+        onSuccess: (List<JsonRecipe>) -> Unit,
+        onError: (Throwable) -> Unit
+    )
+    {
+        val getRecipesRequest = recipeApi.getFilteredRecipies(name,abv + 0.5,abv - 0.5,ebc + 5,ebc - 5)
         runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
     }
 

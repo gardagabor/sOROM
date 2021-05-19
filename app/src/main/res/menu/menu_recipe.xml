@@ -10,6 +10,10 @@
             android:title="MODIFY"
             app:showAsAction="always" />
         <item
+            android:id="@+id/dry_hop"
+            android:title="SET DRY HOPPING"
+            app:showAsAction="always" />
+        <item
             android:id="@+id/back"
             android:title="BACK"
             app:showAsAction="always" />

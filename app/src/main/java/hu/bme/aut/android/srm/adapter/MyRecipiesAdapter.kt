@@ -26,6 +26,8 @@ class MyRecipiesAdapter : RecyclerView.Adapter<MyRecipiesAdapter.ViewHolder>() {
 
     }
 
+    fun getBeerRecipeList() : MutableList<BeerRecipe> = beerRecipeList
+
     fun addItem(beerRecipe: BeerRecipe) {
         val size = beerRecipeList.size
         beerRecipeList.add(beerRecipe)
@@ -38,20 +40,15 @@ class MyRecipiesAdapter : RecyclerView.Adapter<MyRecipiesAdapter.ViewHolder>() {
         notifyItemRangeInserted(size, beerRecipes.size)
     }
 
+
     fun deleteRow(position: Int) {
         beerRecipeList.removeAt(position)
         notifyItemRemoved(position)
     }
 
     fun deleteElement(beerRecipe: BeerRecipe){
-        var actualRecipe : BeerRecipe? = null
-        beerRecipeList.forEach{
-            if(beerRecipe.id?.equals(it.id) == true){
-                actualRecipe = it
-            }
-        }
-        beerRecipeList.remove(actualRecipe)
-        notifyItemRemoved(beerRecipeList.indexOf(actualRecipe))
+        var index = beerRecipeList.indexOf(beerRecipe)
+        deleteRow(index)
 
     }
 

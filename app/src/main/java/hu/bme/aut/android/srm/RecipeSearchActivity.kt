@@ -16,7 +16,7 @@ import hu.bme.aut.android.srm.model.json.JsonRecipe
 import hu.bme.aut.android.srm.network.RecipeInteractor
 import kotlinx.android.synthetic.main.activity_recipe_search.*
 
-class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener,
+class RecipeSearchActivity : AppCompatActivity(),
     FoundRecipiesAdapter.BeerFoundRecipeItemClickListener{
 
     private lateinit var binding : ActivityRecipeSearchBinding
@@ -44,7 +44,6 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
 
     override fun onResume() {
         super.onResume()
-        setSpinners()
     }
 
     override fun finish() {
@@ -65,43 +64,6 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
         binding.root.findViewById<RecyclerView>(R.id.recipe_list).adapter = adapter
     }
 
-    private fun setSpinners(){
-        val list = mutableListOf("=", "<", ">")
-
-        binding.spinnerAbv.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            list
-        )
-        spinnerAbv.onItemSelectedListener = this
-
-        binding.spinnerEbc.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            list
-        )
-        spinnerEbc.onItemSelectedListener = this
-
-
-
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-
-        when (parent.id) {
-            binding.spinnerAbv.id -> {
-                binding.spinnerAbv.setSelection(pos)
-            }
-            binding.spinnerEbc.id -> {
-                binding.spinnerEbc.setSelection(pos)
-            }
-        }
-    }
-
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
-        // Another interface callback
-    }
 
     override fun onItemClick(beerRecipe: BeerRecipe) {
         val intent = Intent(this, RecipeDetailActivity::class.java)
@@ -130,8 +92,27 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
         val recipeInteractor = RecipeInteractor()
         if(binding.etSearchName.text.isEmpty() && binding.etSearchAbv.text.isEmpty() && binding.etSearchEbc.text.isEmpty())
             recipeInteractor.getAllRecipies(onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchAbv.text.isEmpty() && binding.etSearchEbc.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesNameOnly(binding.etSearchName.text.toString(),onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchName.text.isEmpty() && binding.etSearchEbc.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesAbvOnly(binding.etSearchAbv.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchName.text.isEmpty() && binding.etSearchAbv.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesEbcOnly(binding.etSearchEbc.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchEbc.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesNameAndAbvOnly(binding.etSearchName.text.toString(),binding.etSearchAbv.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchAbv.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesNameAndEbcOnly(binding.etSearchName.text.toString(),binding.etSearchEbc.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
+
+        else if(binding.etSearchName.text.isEmpty())
+            recipeInteractor.getFilteredRecipiesAbvAndEbcOnly(binding.etSearchAbv.text.toString().toDouble(),binding.etSearchEbc.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
+
         else
-            recipeInteractor.getFilteredRecipies(binding.etSearchName.text.toString(),onSuccess = this::showRecipes, onError = this::showError)
+            recipeInteractor.getFilteredRecipies(binding.etSearchName.text.toString(),binding.etSearchAbv.text.toString().toDouble(),binding.etSearchEbc.text.toString().toDouble(),onSuccess = this::showRecipes, onError = this::showError)
     }
 
     private fun showRecipes(recipes: List<JsonRecipe>) {
