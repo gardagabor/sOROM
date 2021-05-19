@@ -4,6 +4,7 @@ import hu.bme.aut.android.srm.model.json.JsonRecipe
 
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface RecipeAPI {
@@ -15,6 +16,9 @@ interface RecipeAPI {
     @GET("beers")
     fun getAllRecipies(): Call<List<JsonRecipe>>
 
-    @GET("beers/1")
-    fun getFilteredRecipies() : Call<List<JsonRecipe>>
+    @GET("beers/")
+    fun getFilteredRecipies(@Query(value = "beer_name", encoded = true) name : String, ) : Call<List<JsonRecipe>>
+
+
+
 }

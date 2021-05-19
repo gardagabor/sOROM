@@ -131,7 +131,7 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
         if(binding.etSearchName.text.isEmpty() && binding.etSearchAbv.text.isEmpty() && binding.etSearchEbc.text.isEmpty())
             recipeInteractor.getAllRecipies(onSuccess = this::showRecipes, onError = this::showError)
         else
-            recipeInteractor.getFilteredRecipies(onSuccess = this::showRecipes, onError = this::showError)
+            recipeInteractor.getFilteredRecipies(binding.etSearchName.text.toString(),onSuccess = this::showRecipes, onError = this::showError)
     }
 
     private fun showRecipes(recipes: List<JsonRecipe>) {
@@ -188,7 +188,6 @@ class RecipeSearchActivity : AppCompatActivity(),AdapterView.OnItemSelectedListe
                 )
             )
         }
-
         return newTempStepList
     }
 

@@ -35,11 +35,12 @@ class RecipeInteractor {
     }
 
     fun getFilteredRecipies(
+        name : String,
         onSuccess: (List<JsonRecipe>) -> Unit,
         onError: (Throwable) -> Unit
     )
     {
-        val getRecipesRequest = recipeApi.getFilteredRecipies()
+        val getRecipesRequest = recipeApi.getFilteredRecipies(name)
         runCallOnBackgroundThread(getRecipesRequest,onSuccess,onError)
     }
 
